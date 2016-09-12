@@ -72,10 +72,10 @@ public class Person : MonoBehaviour {
 				// adjusts the index based
 				if(!inReverse) {
 					index++;
-				}else {
+				} else {
 					if (index == 0) {
 						inReverse = false;
-					}else {
+					} else {
 						index--;
 					}
 				}
