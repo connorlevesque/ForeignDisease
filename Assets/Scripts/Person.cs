@@ -8,17 +8,14 @@ public class Person : MonoBehaviour {
 	// indicates how the path should be repeated
 	public bool reverse;
 	// how fast the person should move
-	public int speed;
+	public float speed;
 
 	// conatins the parsed path
 	string[,] movementMap;
-	float speedRegulator;
 
 
      	// Called by Unity when the scene is loading
 	void Start() {
-		// helps keep movement consistent
-		speedRegulator = 0.1f;
 		// parses the path
 		movementMap = new string[2, path.Length];
 		for (int i = 0; i < path.Length; i++) {
@@ -43,7 +40,7 @@ public class Person : MonoBehaviour {
 
 		// "animation" while loop
 		while (true) {
-			if (gridCount <= 0) {
+			if (gridCount == 0) {
 				// figrues out how many grid squares to traverse
 				float.TryParse(movementMap[1, index], out gridCount);
 				// figures out the direction to move in
@@ -90,8 +87,13 @@ public class Person : MonoBehaviour {
 			}
 
 			// moves the person
-			transform.position += direction * speed * speedRegulator;
-			gridCount -= speed * speedRegulator;
+            if(gridCount - speed < 0) {
+                transform.position += direction * gridCount;
+                gridCount = 0;
+            }else {
+                transform.position += direction * speed;
+                gridCount -= speed;
+            }
 			yield return new WaitForSeconds(0.05f);
 		}
 	}
