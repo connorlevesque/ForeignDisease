@@ -3,11 +3,14 @@ using System.Collections;
 
 public class SonicAnimation : MonoBehaviour {
 
+    public AudioClip feverSong;
+    public float volume;
     public Sprite[] sprites;
     SpriteRenderer spriteRenderer;
 
 	void Start () {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        AudioSource.PlayClipAtPoint(feverSong, transform.position, volume);
         StartCoroutine(startAnimation());
 	}
 
@@ -20,7 +23,7 @@ public class SonicAnimation : MonoBehaviour {
             }else {
                 index++;
             }
-            yield return new WaitForSeconds(0.05f); 
+            yield return new WaitForSeconds(0.1f); 
         }
     }
 }
