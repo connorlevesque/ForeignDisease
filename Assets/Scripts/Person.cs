@@ -16,6 +16,10 @@ public class Person : MonoBehaviour {
 	// the color of the infected person
 	public Color infectedColor;
 
+    public AudioClip sneezeSound;
+    public float volume;
+
+
 	// conatins the parsed path
 	string[,] movementMap;
 
@@ -172,6 +176,7 @@ public class Person : MonoBehaviour {
 			float spawnRadius = .4f;
 			Vector3 spawnPosition = transform.position + direction * spawnRadius;
 			Snot snot = (Snot)Instantiate(snotPrefab, spawnPosition, transform.rotation);
+            AudioSource.PlayClipAtPoint(sneezeSound, volume);
 			snot.direction = direction;
 			if (direction == Vector3.right) {
 				snot.transform.rotation = Quaternion.AngleAxis(90, Vector3.forward);
