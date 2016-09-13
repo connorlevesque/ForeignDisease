@@ -29,6 +29,9 @@ public class GameManager : MonoBehaviour {
         nextLevelButton.onClick.AddListener(() => LoadNextScene());
         replayButton.onClick.AddListener(() => LoadSameScene());
         quitButton.onClick.AddListener(() => Application.Quit());
+        foreach(Person person in curPeopleInScene) {
+            person.StopMovingStayInfected();
+        }
         numInfectedPersonsInCurScene = 0;
         curPeopleInScene = new List<Person>();
     }

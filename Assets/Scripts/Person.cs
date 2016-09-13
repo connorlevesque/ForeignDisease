@@ -19,6 +19,7 @@ public class Person : MonoBehaviour {
 	// conatins the parsed path
 	string[,] movementMap;
 
+    bool shouldMove;
 	bool infected = false;
 	int numTimesInfected;
 	SpriteRenderer spriteRenderer;
@@ -34,6 +35,7 @@ public class Person : MonoBehaviour {
 
     // Called by Unity when the scene is loading
     void Start() {
+        shouldMove = true;
         numTimesInfected = 0;
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color;
@@ -113,15 +115,20 @@ public class Person : MonoBehaviour {
             }
 
             // moves the person
-            if (gridCount - speed < 0) {
-                transform.position += direction * gridCount;
-                gridCount = 0;
+            if(shouldMove) {
+                if (gridCount - speed < 0) {
+                    transform.position += direction * gridCount;
+                    gridCount = 0;
+                }
+                else {
+                    transform.position += direction * speed;
+                    gridCount -= speed;
+                }
+                yield return new WaitForSeconds(0.05f);
+            }else {
+                return null;
             }
-            else {
-                transform.position += direction * speed;
-                gridCount -= speed;
-            }
-            yield return new WaitForSeconds(0.05f);
+
         }
     }
 
@@ -143,7 +150,7 @@ public class Person : MonoBehaviour {
         if (numTimesInfected == 0) {
             infected = false;
             GameManager.RemoveInfectedPerson();
-            spriteRenderer.color = originalColor;
+            if(shouldMove) spriteRenderer.color = originalColor;
         }
     }
 
@@ -177,4 +184,9 @@ public class Person : MonoBehaviour {
 			}
 		}
 	}
+
+    public void StopMovingStayInfected() {
+        shouldMove = false;
+        spriteRenderer.color = infectedColor;
+    }
 }
