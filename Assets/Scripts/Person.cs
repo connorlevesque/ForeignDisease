@@ -24,8 +24,6 @@ public class Person : MonoBehaviour {
 	SpriteRenderer spriteRenderer;
 	Color originalColor;
 
-	private bool sneezeReady = true;
-	public float sneezeDelay;
 	public Snot snotPrefab;
 
 	// directional sprites
@@ -155,17 +153,8 @@ public class Person : MonoBehaviour {
 		}
 	}
 
-	void Update() {
-		// sneeze if <space> is pressed
-		if (infected) {
-			if (Input.GetKeyDown("space")) {
-				Sneeze();
-			}
-		}
-	}
-
 	void Sneeze() {
-		if (sneezeReady) {
+		if (infected) {
 			float spawnRadius = .35f;
 			Vector3 spawnPosition = transform.position + direction * spawnRadius;
 			Snot snot = (Snot)Instantiate(snotPrefab, spawnPosition, transform.rotation);
@@ -179,13 +168,6 @@ public class Person : MonoBehaviour {
 			} else if (direction == Vector3.down) {
 				snot.transform.rotation = Quaternion.AngleAxis(0, Vector3.forward);
 			}
-			StartCoroutine(SneezeCooldown());
 		}
-	}
-
-	IEnumerator SneezeCooldown() {
-		sneezeReady = false;
-		yield return new WaitForSeconds(sneezeDelay);
-		sneezeReady = true;
 	}
 }
