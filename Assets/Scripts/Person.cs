@@ -127,7 +127,7 @@ public class Person : MonoBehaviour {
 
     // called by Unity when there's a collison
     void OnCollisionEnter2D(Collision2D other) {
-        if (other.gameObject.tag == "Player" || other.gameObject.tag == "Sneeze") {
+        if (other.gameObject.tag == "Slime" || other.gameObject.tag == "Sneeze") {
             StartCoroutine(Infect());
         }
     }

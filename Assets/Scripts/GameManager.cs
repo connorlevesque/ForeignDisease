@@ -1,11 +1,14 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
     public GameObject winLevelUI;
+    public Button nextLevelButton;
+    public Button replayButton;
+    public Button quitButton;
 
     int currentSceneIndex;
     int numInfectedPersonsInCurScene;
@@ -14,6 +17,7 @@ public class GameManager : MonoBehaviour {
     static GameManager instance;
 
     void Awake() {
+        winLevelUI.SetActive(false);
         currentSceneIndex = 0;
         curPeopleInScene = new List<Person>();
         numInfectedPersonsInCurScene = 0;
@@ -21,7 +25,10 @@ public class GameManager : MonoBehaviour {
     }
 
     void WinLevel() {
-        Instantiate(winLevelUI);
+        winLevelUI.SetActive(true);
+        nextLevelButton.onClick.AddListener(() => LoadNextScene());
+        replayButton.onClick.AddListener(() => LoadSameScene());
+        quitButton.onClick.AddListener(() => Application.Quit());
         numInfectedPersonsInCurScene = 0;
         curPeopleInScene = new List<Person>();
     }
@@ -31,8 +38,11 @@ public class GameManager : MonoBehaviour {
         SceneManager.LoadScene(instance.currentSceneIndex);
     }
 
+    public static void LoadSameScene() {
+        SceneManager.LoadScene(instance.currentSceneIndex);
+    }
+
     public static void AddPerson(Person person) {
-        //Debug.LogFormat("instance = {0}, curPeople = {1}, person = {2}", instance, instance.curPeopleInScene, person);
         instance.curPeopleInScene.Add(person);
     }
 
