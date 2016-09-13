@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Slime : MonoBehaviour {
 
@@ -28,10 +29,10 @@ public class Slime : MonoBehaviour {
 		}
 
 		if (Input.GetKeyDown("space") && sneezeReady) {
-			List<Person> people = gameManager.GetPeople();
+			List<Person> people = GameManager.GetPeople();
 			for (int i = 0; i < people.Count; i++)
 			{
-				people[i].Sneeze;
+				people[i].Sneeze();
 			}
 		}
 		StartCoroutine(SneezeCooldown());
