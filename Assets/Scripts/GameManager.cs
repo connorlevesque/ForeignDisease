@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour {
 
@@ -8,13 +9,14 @@ public class GameManager : MonoBehaviour {
     public GameObject winLevelUI;
 
     int currentSceneIndex;
-    int numPersonsInCurScene;
     int numInfectedPersonsInCurScene;
+    List<Person> curPeopleInScene;
+
     static GameManager instance;
 
     void Start() {
         currentSceneIndex = 0;
-        numPersonsInCurScene = 0;
+        curPeopleInScene = new List<Person>();
         numInfectedPersonsInCurScene = 0;
         instance = this;
 
@@ -23,8 +25,8 @@ public class GameManager : MonoBehaviour {
 
     void WinLevel() {
         Instantiate(winLevelUI);
-        numPersonsInCurScene = 0;
         numInfectedPersonsInCurScene = 0;
+        curPeopleInScene = new List<Person>();
     }
 
     public static void LoadNextScene() {
@@ -32,18 +34,22 @@ public class GameManager : MonoBehaviour {
         SceneManager.LoadScene(instance.currentSceneIndex);
     }
 
-    public static void AddPerson() {
-        instance.numPersonsInCurScene++;
+    public static void AddPerson(Person person) {
+        instance.curPeopleInScene.Add(person);
     }
 
     public static void AddInfectedPerson() {
         instance.numInfectedPersonsInCurScene++;
-        if(instance.numInfectedPersonsInCurScene == instance.numPersonsInCurScene) {
+        if (instance.numInfectedPersonsInCurScene == instance.curPeopleInScene.Count) {
             instance.WinLevel();
         }
     }
 
     public static void RemoveInfectedPerson() {
         instance.numInfectedPersonsInCurScene--;
+    }
+
+    public static List<Person> GetPeople() {
+        return instance.curPeopleInScene;
     }
 }
