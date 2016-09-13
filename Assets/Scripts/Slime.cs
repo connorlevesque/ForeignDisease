@@ -14,18 +14,15 @@ public class Slime : MonoBehaviour {
 	// Update is called once per frame
 	void Update() {
 
-		if (Input.GetKey("up")) {
-			direction = Vector3.up;
-		} else if (Input.GetKey("left")) {
-			direction = Vector3.left;
-		} else if (Input.GetKey("right")) {
-			direction = Vector3.right;
-		} else if (Input.GetKey("down")) {
-			direction = Vector3.down;
-		} else {
-			direction = Vector3.zero;
+		float inputX = Input.GetAxis("Horizontal");
+		float inputY = Input.GetAxis("Vertical");
+		Vector3 inputV = new Vector3(inputX, inputY, 0);
+		if (inputV != new Vector3 (0, 0, 0)) 
+		{
+			//float angle = Vector3.Angle(Vector3.up, inputV.normalized);
+			//if (inputX > 0) angle *= -1;
+			//transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+			transform.position += speed * inputV;
 		}
-
-		transform.position += speed * direction;
 	}
 }
