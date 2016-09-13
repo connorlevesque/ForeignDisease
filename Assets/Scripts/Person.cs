@@ -132,12 +132,14 @@ public class Person : MonoBehaviour {
     // "infects" the person for a given amount of time
     IEnumerator Infect() {
 		infected = true;
+        if(numTimesInfected == 0) GameManager.AddInfectedPerson();
         numTimesInfected++;
         spriteRenderer.color = infectedColor;
         yield return new WaitForSeconds(time);
         numTimesInfected--;
         if(numTimesInfected == 0) {
 			infected = false;
+            GameManager.RemoveInfectedPerson();
             spriteRenderer.color = originalColor;
         }
     }
