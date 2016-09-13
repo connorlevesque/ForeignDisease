@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour {
 
     public static void LoadNextScene() {
         instance.currentSceneIndex++;
-        if (instance.currentSceneIndex >= SceneManager.sceneCount - 1) {
+        if (instance.currentSceneIndex >= SceneManager.sceneCount) {
             Debug.Log("No more scenes");
         }else {
             SceneManager.LoadScene(instance.currentSceneIndex);
