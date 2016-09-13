@@ -23,15 +23,20 @@ public class GameManager : MonoBehaviour {
     }
 
     void WinLevel() {
-        winLevelUI.SetActive(true);
-        nextLevelButton.onClick.AddListener(() => LoadNextScene());
-        replayButton.onClick.AddListener(() => LoadSameScene());
-        quitButton.onClick.AddListener(() => Application.Quit());
-        foreach(Person person in curPeopleInScene) {
-            person.StopMovingStayInfected();
+        if (SceneManager.GetActiveScene().buildIndex + 1 == SceneManager.sceneCount) {
+            LoadNextScene();
         }
-        numInfectedPersonsInCurScene = 0;
-        curPeopleInScene = new List<Person>();
+        else {
+            winLevelUI.SetActive(true);
+            nextLevelButton.onClick.AddListener(() => LoadNextScene());
+            replayButton.onClick.AddListener(() => LoadSameScene());
+            quitButton.onClick.AddListener(() => Application.Quit());
+            foreach (Person person in curPeopleInScene) {
+                person.StopMovingStayInfected();
+            }
+            numInfectedPersonsInCurScene = 0;
+            curPeopleInScene = new List<Person>();
+        }
     }
 
     public static void LoadNextScene() {
