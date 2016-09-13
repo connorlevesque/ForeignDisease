@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour {
     }
 
     void WinLevel() {
-        if (SceneManager.GetActiveScene().buildIndex + 1 == SceneManager.sceneCount) {
+        if (SceneManager.GetActiveScene().buildIndex == 10) {
             LoadNextScene();
         }
         else {

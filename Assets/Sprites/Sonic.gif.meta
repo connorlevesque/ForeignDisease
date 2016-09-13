@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 384d0d0fa414af74ab83a1bdc938e7f6
-timeCreated: 1473779072
+guid: 6aa49779213a1b649a6cb647570aeb81
+timeCreated: 1473780285
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -69,7 +69,7 @@ TextureImporter:
         width: 34.875
         height: 46
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -82,7 +82,7 @@ TextureImporter:
         width: 34.875
         height: 46
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -95,7 +95,7 @@ TextureImporter:
         width: 34.875
         height: 46
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -108,7 +108,7 @@ TextureImporter:
         width: 34.875
         height: 46
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -118,10 +118,10 @@ TextureImporter:
         serializedVersion: 2
         x: 136
         y: 46
-        width: 34.875
+        width: 35
         height: 46
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -131,23 +131,23 @@ TextureImporter:
         serializedVersion: 2
         x: 170
         y: 46
-        width: 34.875
+        width: 32
         height: 46
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 4, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
       name: Sonic_14
       rect:
         serializedVersion: 2
-        x: 204
+        x: 202
         y: 46
-        width: 34.875
+        width: 37
         height: 46
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -155,12 +155,12 @@ TextureImporter:
       name: Sonic_15
       rect:
         serializedVersion: 2
-        x: 238
+        x: 237
         y: 46
-        width: 34.875
+        width: 37
         height: 46
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
