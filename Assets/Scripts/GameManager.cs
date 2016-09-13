@@ -9,8 +9,7 @@ public class GameManager : MonoBehaviour {
     public Button nextLevelButton;
     public Button replayButton;
     public Button quitButton;
-
-    int currentSceneIndex;
+    
     int numInfectedPersonsInCurScene;
     List<Person> curPeopleInScene;
 
@@ -18,7 +17,6 @@ public class GameManager : MonoBehaviour {
 
     void Awake() {
         winLevelUI.SetActive(false);
-        currentSceneIndex = 0;
         curPeopleInScene = new List<Person>();
         numInfectedPersonsInCurScene = 0;
         instance = this;
@@ -37,12 +35,11 @@ public class GameManager : MonoBehaviour {
     }
 
     public static void LoadNextScene() {
-        instance.currentSceneIndex++;
-        SceneManager.LoadScene(instance.currentSceneIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public static void LoadSameScene() {
-        SceneManager.LoadScene(instance.currentSceneIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public static void AddPerson(Person person) {
