@@ -18,10 +18,6 @@ public class GameManager : MonoBehaviour {
 
     public static void LoadNextScene() {
         instance.currentSceneIndex++;
-        if (instance.currentSceneIndex >= SceneManager.sceneCount) {
-            Debug.Log("No more scenes");
-        }else {
-            SceneManager.LoadScene(instance.currentSceneIndex);
-        }
+        SceneManager.LoadScene(instance.currentSceneIndex);
     }
 }
