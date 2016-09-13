@@ -69,7 +69,7 @@ public class Person : MonoBehaviour {
 
         // "animation" while loop
         while (true) {
-            if (gridCount == 0) {
+            if (gridCount == 0 && path.Length != 0) {
                 // figrues out how many grid squares to traverse
                 float.TryParse(movementMap[1, index], out gridCount);
                 // figures out the direction to move in
