@@ -5,7 +5,6 @@ using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour {
 
-    public Button startButton;
     public GameObject winLevelUI;
 
     int currentSceneIndex;
@@ -19,8 +18,6 @@ public class GameManager : MonoBehaviour {
         curPeopleInScene = new List<Person>();
         numInfectedPersonsInCurScene = 0;
         instance = this;
-
-        startButton.onClick.AddListener(() => LoadNextScene());
     }
 
     void WinLevel() {
