@@ -4,35 +4,33 @@ using System.Collections;
 
 public class Person : MonoBehaviour {
 
-    public Vector3 direction;
-    // the inputted string that contains the desired path
-    public string[] path;
-    // indicates how the path should be repeated
-    public bool reverse;
-    // how fast the person should move
-    public float speed;
-    // how long the person stays infected
-    public float time;
-    // the color of the infected person
-    public Color infectedColor;
+	public Vector3 direction;
+	// the inputted string that contains the desired path
+	public string[] path;
+	// indicates how the path should be repeated
+	public bool reverse;
+	// how fast the person should move
+	public float speed;
+	// how long the person stays infected
+	public float time;
+	// the color of the infected person
+	public Color infectedColor;
 
-    // conatins the parsed path
-    string[,] movementMap;
+	// conatins the parsed path
+	string[,] movementMap;
 
-    bool infected = false;
-    int numTimesInfected;
-    SpriteRenderer spriteRenderer;
-    Color originalColor;
+	bool infected = false;
+	int numTimesInfected;
+	SpriteRenderer spriteRenderer;
+	Color originalColor;
 
-    private bool sneezeReady = true;
-    public float sneezeDelay;
-    public Snot snotPrefab;
+	public Snot snotPrefab;
 
-    // directional sprites
-    public Sprite spriteDown;
-    public Sprite spriteLeft;
-    public Sprite spriteRight;
-    public Sprite spriteUp;
+	// directional sprites
+	public Sprite spriteDown;
+	public Sprite spriteLeft;
+	public Sprite spriteRight;
+	public Sprite spriteUp;
 
     // Called by Unity when the scene is loading
     void Start() {
@@ -149,56 +147,34 @@ public class Person : MonoBehaviour {
         }
     }
 
-    void SetDirection(Vector3 newDirection) {
-        direction = newDirection;
-        if (direction == Vector3.right) {
-            spriteRenderer.sprite = spriteRight;
-        }
-        else if (direction == Vector3.up) {
-            spriteRenderer.sprite = spriteUp;
-        }
-        else if (direction == Vector3.left) {
-            spriteRenderer.sprite = spriteLeft;
-        }
-        else if (direction == Vector3.down) {
-            spriteRenderer.sprite = spriteDown;
-        }
-    }
+	void SetDirection(Vector3 newDirection) {
+		direction = newDirection;
+		if (direction == Vector3.right) {
+			spriteRenderer.sprite = spriteRight;
+		} else if (direction == Vector3.up) {
+			spriteRenderer.sprite = spriteUp;
+		} else if (direction == Vector3.left) {
+			spriteRenderer.sprite = spriteLeft;
+		} else if (direction == Vector3.down) {
+			spriteRenderer.sprite = spriteDown;
+		}
+	}
 
-    void Update() {
-        // sneeze if <space> is pressed
-        if (infected) {
-            if (Input.GetKeyDown("space")) {
-                Sneeze();
-            }
-        }
-    }
-
-    void Sneeze() {
-        if (sneezeReady) {
-            float spawnRadius = .35f;
-            Vector3 spawnPosition = transform.position + direction * spawnRadius;
-            Snot snot = (Snot)Instantiate(snotPrefab, spawnPosition, transform.rotation);
-            snot.direction = direction;
-            if (direction == Vector3.right) {
-                snot.transform.rotation = Quaternion.AngleAxis(90, Vector3.forward);
-            }
-            else if (direction == Vector3.up) {
-                snot.transform.rotation = Quaternion.AngleAxis(180, Vector3.forward);
-            }
-            else if (direction == Vector3.left) {
-                snot.transform.rotation = Quaternion.AngleAxis(270, Vector3.forward);
-            }
-            else if (direction == Vector3.down) {
-                snot.transform.rotation = Quaternion.AngleAxis(0, Vector3.forward);
-            }
-            StartCoroutine(SneezeCooldown());
-        }
-    }
-
-    IEnumerator SneezeCooldown() {
-        sneezeReady = false;
-        yield return new WaitForSeconds(sneezeDelay);
-        sneezeReady = true;
-    }
+	void Sneeze() {
+		if (infected) {
+			float spawnRadius = .35f;
+			Vector3 spawnPosition = transform.position + direction * spawnRadius;
+			Snot snot = (Snot)Instantiate(snotPrefab, spawnPosition, transform.rotation);
+			snot.direction = direction;
+			if (direction == Vector3.right) {
+				snot.transform.rotation = Quaternion.AngleAxis(90, Vector3.forward);
+			} else if (direction == Vector3.up) {
+				snot.transform.rotation = Quaternion.AngleAxis(180, Vector3.forward);
+			} else if (direction == Vector3.left) {
+				snot.transform.rotation = Quaternion.AngleAxis(270, Vector3.forward);
+			} else if (direction == Vector3.down) {
+				snot.transform.rotation = Quaternion.AngleAxis(0, Vector3.forward);
+			}
+		}
+	}
 }
