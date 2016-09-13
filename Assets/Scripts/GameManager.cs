@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour {
 
     static GameManager instance;
 
-    void Start() {
+    void Awake() {
         currentSceneIndex = 0;
         curPeopleInScene = new List<Person>();
         numInfectedPersonsInCurScene = 0;
@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public static void AddPerson(Person person) {
+        //Debug.LogFormat("instance = {0}, curPeople = {1}, person = {2}", instance, instance.curPeopleInScene, person);
         instance.curPeopleInScene.Add(person);
     }
 

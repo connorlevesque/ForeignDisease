@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Slime : MonoBehaviour {
 
 	public float speed;
-	public GameManager gameManager;
 
 	private bool sneezeReady = true;
 	public float sneezeDelay;
@@ -27,14 +27,15 @@ public class Slime : MonoBehaviour {
 			transform.position += speed * inputV;
 		}
 
+		// sneeze when <space> is pressed
 		if (Input.GetKeyDown("space") && sneezeReady) {
-			List<Person> people = gameManager.GetPeople();
+			List<Person> people = GameManager.GetPeople();
 			for (int i = 0; i < people.Count; i++)
 			{
-				people[i].Sneeze;
+				people[i].Sneeze();
 			}
+			StartCoroutine(SneezeCooldown());
 		}
-		StartCoroutine(SneezeCooldown());
 	}
 
 	IEnumerator SneezeCooldown() {

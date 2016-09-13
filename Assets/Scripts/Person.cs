@@ -160,9 +160,9 @@ public class Person : MonoBehaviour {
 		}
 	}
 
-	void Sneeze() {
+	public void Sneeze() {
 		if (infected) {
-			float spawnRadius = .35f;
+			float spawnRadius = .4f;
 			Vector3 spawnPosition = transform.position + direction * spawnRadius;
 			Snot snot = (Snot)Instantiate(snotPrefab, spawnPosition, transform.rotation);
 			snot.direction = direction;
