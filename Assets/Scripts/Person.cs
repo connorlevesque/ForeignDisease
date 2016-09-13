@@ -126,7 +126,7 @@ public class Person : MonoBehaviour {
                 }
                 yield return new WaitForSeconds(0.05f);
             }else {
-                return null;
+                yield return null;
             }
 
         }
