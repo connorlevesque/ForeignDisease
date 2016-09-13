@@ -160,7 +160,7 @@ public class Person : MonoBehaviour {
 		}
 	}
 
-	void Sneeze() {
+	public void Sneeze() {
 		if (infected) {
 			float spawnRadius = .35f;
 			Vector3 spawnPosition = transform.position + direction * spawnRadius;
